@@ -105,123 +105,209 @@ CREATE TABLE Table_Name (
 
 **Question 1**
 --
--- Paste Question 1 here
+```
+Write a SQL Query for inserting the below values in the table Customers
+
+ID               NAME             AGE  ADDRESS     SALARY      
+---------------  ---------------  ---  ----------  ----------  
+1                Ramesh           32   Ahmedabad   2000
+2                Khilan           25   Delhi       1500
+3                Kaushik          23   Kota        2000
+```
 
 ```sql
--- Paste your SQL code below for Question 1
+INSERT INTO Customers (ID, NAME, AGE, ADDRESS, SALARY) VALUES (1, 'Ramesh', 32, 'Ahmedabad', 2000);
+INSERT INTO Customers (ID, NAME, AGE, ADDRESS, SALARY) VALUES (2, 'Khilan', 25, 'Delhi', 1500);
+INSERT INTO Customers (ID, NAME, AGE, ADDRESS, SALARY) VALUES (3, 'Kaushik', 23, 'Kota', 2000);
 ```
 
 **Output:**
+<img width="1294" height="932" alt="Screenshot 2025-11-11 205956" src="https://github.com/user-attachments/assets/5181ea52-c70e-40d7-beef-dc32cbe4603f" />
 
-![Output1](output.png)
 
 **Question 2**
 ---
--- Paste Question 2 here
+Create a table named Employees with the following constraints:
+
+EmployeeID should be the primary key.
+FirstName and LastName should be NOT NULL.
+Email should be unique.
+Salary should be greater than 0.
+DepartmentID should be a foreign key referencing the Departments table.
 
 ```sql
--- Paste your SQL code below for Question 2
+CREATE TABLE Employees (
+    EmployeeID INT PRIMARY KEY,
+    FirstName VARCHAR(255) NOT NULL,
+    LastName VARCHAR(255) NOT NULL,
+    Email VARCHAR(255) UNIQUE,
+    Salary DECIMAL(10, 2) CHECK (Salary > 0),
+    DepartmentID INT,
+    FOREIGN KEY (DepartmentID) REFERENCES Departments(DepartmentID)
 ```
 
 **Output:**
+<img width="1247" height="975" alt="Screenshot 2025-11-11 210217" src="https://github.com/user-attachments/assets/2e55b5bc-d81b-4719-bda7-7040404ff633" />
 
-![Output2](output.png)
 
 **Question 3**
 ---
--- Paste Question 3 here
+Create a table named Orders with the following columns:
+
+OrderID as INTEGER
+OrderDate as TEXT
+CustomerID as INTEGER
 
 ```sql
--- Paste your SQL code below for Question 3
+CREATE TABLE Orders (
+    OrderID INTEGER,
+    OrderDate TEXT,
+    CustomerID INTEGER
+);
 ```
 
 **Output:**
+<img width="1255" height="968" alt="Screenshot 2025-11-11 211951" src="https://github.com/user-attachments/assets/ca9684b4-d99d-40eb-a3c6-6fb9c02bee48" />
 
-![Output3](output.png)
 
 **Question 4**
 ---
--- Paste Question 4 here
+Create a table named Orders with the following constraints:
+OrderID as INTEGER should be the primary key.
+OrderDate as DATE should be not NULL.
+CustomerID as INTEGER should be a foreign key referencing Customers(CustomerID).
 
 ```sql
--- Paste your SQL code below for Question 4
+CREATE TABLE Orders (
+    OrderID INTEGER PRIMARY KEY,
+    OrderDate DATE NOT NULL,
+    CustomerID INTEGER,
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+);
 ```
 
 **Output:**
+<img width="1228" height="915" alt="Screenshot 2025-11-11 212008" src="https://github.com/user-attachments/assets/f0dc6684-f099-468b-b361-d7e492f06ae8" />
 
-![Output4](output.png)
 
 **Question 5**
 ---
--- Paste Question 5 here
+Create a new table named item with the following specifications and constraints:
+item_id as TEXT and as primary key.
+item_desc as TEXT.
+rate as INTEGER.
+icom_id as TEXT with a length of 4.
+icom_id is a foreign key referencing com_id in the company table.
+The foreign key should cascade updates and deletes.
+item_desc and rate should not accept NULL.
 
 ```sql
--- Paste your SQL code below for Question 5
+CREATE TABLE item (
+    item_id TEXT PRIMARY KEY,
+    item_desc TEXT NOT NULL,
+    rate INTEGER NOT NULL,
+    icom_id TEXT(4),
+    FOREIGN KEY (icom_id) REFERENCES company(com_id)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
+);
 ```
 
 **Output:**
+<img width="1236" height="946" alt="Screenshot 2025-11-11 212025" src="https://github.com/user-attachments/assets/4c80b3e3-80e9-4508-b17d-c3f87e3dd3db" />
 
-![Output5](output.png)
 
 **Question 6**
 ---
--- Paste Question 6 here
+Write a SQL Query  to add attribute Date_of_joining as Date and rename the attribute job_title as Designation in the table 'Employees'
 
 ```sql
--- Paste your SQL code below for Question 6
+ALTER TABLE Employees ADD COLUMN Date_of_joining Date;
+ALTER TABLE Employees RENAME COLUMN job_title TO Designation;
 ```
 
 **Output:**
+<img width="1263" height="964" alt="Screenshot 2025-11-11 212038" src="https://github.com/user-attachments/assets/af482163-66fe-4379-9664-a8b87939d356" />
 
-![Output6](output.png)
 
 **Question 7**
 ---
--- Paste Question 7 here
+Insert all books from Out_of_print_books into Books
+
+Table attributes are ISBN, Title, Author, Publisher, YearPublished
 
 ```sql
--- Paste your SQL code below for Question 7
+INSERT INTO Books (ISBN, Title, Author, Publisher, YearPublished)
+SELECT ISBN, Title, Author, Publisher, YearPublished
+FROM out_of_print_books;
 ```
 
 **Output:**
+<img width="1229" height="918" alt="Screenshot 2025-11-11 212051" src="https://github.com/user-attachments/assets/5173da13-2eb2-491b-99aa-128f80aacea6" />
 
-![Output7](output.png)
 
 **Question 8**
 ---
--- Paste Question 8 here
+Create a table named Department with the following constraints:
+DepartmentID as INTEGER should be the primary key.
+DepartmentName as TEXT should be unique and not NULL.
+Location as TEXT.
 
 ```sql
--- Paste your SQL code below for Question 8
+CREATE TABLE Department (
+    DepartmentID INTEGER PRIMARY KEY,
+    DepartmentName TEXT UNIQUE NOT NULL,
+    Location TEXT
+);
 ```
 
 **Output:**
+<img width="1237" height="946" alt="Screenshot 2025-11-11 212107" src="https://github.com/user-attachments/assets/35fe9adb-e1ff-436d-872a-90b1d070e9d1" />
 
-![Output8](output.png)
 
 **Question 9**
 ---
--- Paste Question 9 here
+In the Books table, insert a record where some fields are NULL, another record where all fields are filled without any NULL values, and a third record where some fields are filled, and others are left as NULL.
+
+ISBN             Title                      Author           Publisher   Year
+---------------  -------------------------  ---------------  ----------  ----------
+978-1234567890   Introduction to AI         John Doe
+978-9876543210   Deep Learning              Jane Doe         TechPress   2022
+978-1122334455   Cybersecurity Essentials   Alice Smith                  2021
 
 ```sql
--- Paste your SQL code below for Question 9
+INSERT INTO Books (ISBN, Title, Author, Publisher, Year)
+VALUES ('978-1234567890', 'Introduction to AI', 'John Doe', NULL, NULL);
+INSERT INTO Books (ISBN, Title, Author, Publisher, Year)
+VALUES ('978-9876543210', 'Deep Learning', 'Jane Doe', 'TechPress', 2022);
+INSERT INTO Books (ISBN, Title, Author, Publisher, Year)
+VALUES ('978-1122334455', 'Cybersecurity Essentials', 'Alice Smith', NULL, 2021);
 ```
 
 **Output:**
+<img width="1261" height="897" alt="Screenshot 2025-11-11 212121" src="https://github.com/user-attachments/assets/ff59cbc6-b9bd-4e0e-9cb4-0896eb6b7bf2" />
 
-![Output9](output.png)
 
 **Question 10**
 ---
--- Paste Question 10 here
+Write a SQL query to Add a new column State as text in the Student_details table.
+
+Sample table: Student_details
+
+ cid              name             type   notnull     dflt_value  pk
+---------------  ---------------  -----  ----------  ----------  ----------
+0                RollNo           int    0                       1
+1                Name             VARCH  1                       0
+2                Gender           TEXT   1                       0
+3                Subject          VARCH  0                       0
+4                MARKS            INT (  0                       0
 
 ```sql
--- Paste your SQL code below for Question 10
+ALTER TABLE Student_details ADD COLUMN State TEXT;
 ```
 
 **Output:**
-
-![Output10](output.png)
+<img width="1253" height="964" alt="Screenshot 2025-11-11 212137" src="https://github.com/user-attachments/assets/d1316631-3942-46d1-87b9-90a3bc8e9f19" />
 
 
 ## RESULT
