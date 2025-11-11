@@ -38,123 +38,209 @@ HAVING condition;
 
 **Question 1**
 --
--- Paste Question 1 here
+Write a SQL query to find the total income of employees aged 40 or above.
+
+Table: employee
+
+name        type
+----------  ----------
+id          INTEGER
+name        TEXT
+age         INTEGER
+city        TEXT
+income      INTEGER
 
 ```sql
--- Paste your SQL code below for Question 1
+SELECT SUM(income) as total_income
+FROM employee
+WHERE age >= 40;
 ```
 
 **Output:**
+<img width="1018" height="912" alt="Screenshot 2025-11-11 221420" src="https://github.com/user-attachments/assets/0b9a05ce-185b-4ad4-99d4-b2d200a3fd5b" />
 
-![Output1](output.png)
 
 **Question 2**
 ---
--- Paste Question 2 here
+Write a SQL query to find the youngest employee in the company?
+
+Table: employee
+
+name        type
+----------  ----------
+id          INTEGER
+name        TEXT
+age         INTEGER
+city        TEXT
+income      INTEGER
 
 ```sql
--- Paste your SQL code below for Question 2
+SELECT name AS Employee_Name,age AS Age
+FROM  employee
+ORDER BY age ASC
+LIMIT 1;
 ```
 
 **Output:**
+<img width="879" height="911" alt="Screenshot 2025-11-11 221432" src="https://github.com/user-attachments/assets/8087f6cb-e5d2-4d01-9e0e-585dfe5aa1a1" />
 
-![Output2](output.png)
 
 **Question 3**
 ---
--- Paste Question 3 here
+Write a SQL query to find the difference between the maximum and minimum price of fruits?
+
+Table: fruits
+
+name        type
+----------  ----------
+id          INTEGER
+name        TEXT
+unit        TEXT
+inventory   INTEGER
+price       REAL
 
 ```sql
--- Paste your SQL code below for Question 3
+SELECT MAX(price) - MIN(price) as price_diff
+FROM fruits
 ```
 
 **Output:**
+<img width="646" height="942" alt="Screenshot 2025-11-11 221445" src="https://github.com/user-attachments/assets/580f977d-9c1e-4f1c-ad69-00aac6a1aa25" />
 
-![Output3](output.png)
 
 **Question 4**
 ---
--- Paste Question 4 here
+How many appointments are scheduled for each patient?
 
+Sample table: Appointments Table
+
+name                  type
+--------------------  ----------
+AppointmentID         INTEGER
+PatientID             INTEGER
+DoctorID              INTEGER
+AppointmentDateTime   DATETIME
+Purpose               TEXT
+Status                TEXT
 ```sql
--- Paste your SQL code below for Question 4
+SELECT PatientID,COUNT(*) AS TotalAppointments
+FROM Appointments
+GROUP BY PatientID;
+
 ```
 
 **Output:**
+<img width="828" height="998" alt="Screenshot 2025-11-11 221500" src="https://github.com/user-attachments/assets/0dc8f247-1e65-4d40-ab4a-b883d796bafe" />
 
-![Output4](output.png)
 
 **Question 5**
 ---
--- Paste Question 5 here
+What is the average dosage prescribed for each medication?
 
+Sample tablePrescriptions Table
 ```sql
--- Paste your SQL code below for Question 5
+SELECT 
+    Medication,
+    AVG(Dosage) AS  AvgDosage
+FROM Prescriptions
+GROUP BY Medication;
 ```
 
 **Output:**
+<img width="716" height="942" alt="Screenshot 2025-11-11 221513" src="https://github.com/user-attachments/assets/12694d68-63ab-457d-bb3a-d7e5c94be92d" />
 
-![Output5](output.png)
 
 **Question 6**
 ---
--- Paste Question 6 here
+What is the total number of appointments scheduled for each day?
 
+Sample table:Appointments Table
 ```sql
--- Paste your SQL code below for Question 6
+SELECT 
+    DATE(AppointmentDateTime) AS AppointmentDate,
+    COUNT(*) AS TotalAppointments
+FROM Appointments
+GROUP BY DATE(AppointmentDateTime)
+ORDER BY AppointmentDate;
 ```
 
 **Output:**
+<img width="815" height="984" alt="Screenshot 2025-11-11 221525" src="https://github.com/user-attachments/assets/89f4e5d4-fa8b-42cb-b286-b5c3032c5a4d" />
 
-![Output6](output.png)
 
 **Question 7**
 ---
--- Paste Question 7 here
-
+Write the SQL query that achieves the grouping of data by occupation, calculates the average work hours for each occupation, and includes only those occupations where the average work hour falls between 10 and 12.
 ```sql
--- Paste your SQL code below for Question 7
+SELECT occupation, AVG(workhour)
+FROM employee1
+GROUP BY occupation
+HAVING AVG(workhour) BETWEEN 10 AND 12;
+
 ```
 
 **Output:**
+<img width="696" height="984" alt="Screenshot 2025-11-11 221535" src="https://github.com/user-attachments/assets/80daa430-1af7-4468-93f9-26ad2bf52f50" />
 
-![Output7](output.png)
 
 **Question 8**
 ---
--- Paste Question 8 here
-
+Write the SQL query that achieves the selection of product names and the maximum price for each category from the "products" table, and includes only those products where the maximum price is greater than 15.
 ```sql
--- Paste your SQL code below for Question 8
+SELECT category_id,product_name, MAX(price) AS Price
+FROM products
+GROUP BY category_id
+HAVING MAX(price) > 15;
 ```
 
 **Output:**
+<img width="835" height="906" alt="Screenshot 2025-11-11 221548" src="https://github.com/user-attachments/assets/4c23ea71-fd0e-4eb3-b715-4303b6ba03ce" />
 
-![Output8](output.png)
 
 **Question 9**
 ---
--- Paste Question 9 here
+Write the SQL query to find how many patients have more than 3 medical records?.
 
+Sample table: MedicalRecords
+
+name        type
+----------  ----------
+RecordID    INTEGER
+PatientID   INTEGER
+DoctorID    INTEGER
+Date        DATE
+Diagnosis   TEXT
+Treatment   TEXT
+Medication  TEXT
 ```sql
--- Paste your SQL code below for Question 9
+SELECT
+    PatientID,
+    COUNT(*) AS TotalRecords
+FROM MedicalRecords
+GROUP BY PatientID
+HAVING COUNT(*) > 3
+
+
 ```
 
 **Output:**
+<img width="741" height="952" alt="Screenshot 2025-11-11 221556" src="https://github.com/user-attachments/assets/ae967d8a-c794-494a-a385-f4da33f2fb9d" />
 
-![Output9](output.png)
 
 **Question 10**
 ---
--- Paste Question 10 here
+Write the SQL query that accomplishes the selection of number of products for each category from products table which includes only those products where the category ID is greater than 2.
 
+Sample table: products
 ```sql
--- Paste your SQL code below for Question 10
+SELECT category_id,COUNT(*) as COUNT
+FROM products
+WHERE category_id > 2
+GROUP BY category_id;
 ```
 
 **Output:**
-
-![Output10](output.png)
+<img width="1204" height="918" alt="Screenshot 2025-11-11 221611" src="https://github.com/user-attachments/assets/05fed1b5-2716-4cf7-ba24-ae5e0e10e469" />
 
 
 ## RESULT
