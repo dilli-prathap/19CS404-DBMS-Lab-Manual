@@ -78,7 +78,17 @@ surgeon_id       INT
 surgery_date     DATE
 
 ```sql
-
+SELECT 
+    p.first_name, 
+    s.*
+FROM 
+    patients p
+INNER JOIN 
+    surgeries s
+ON 
+    p.patient_id = s.patient_id
+WHERE 
+    p.date_of_birth > '1990-01-01';
 ```
 
 **Output:**
@@ -110,7 +120,15 @@ last_name        VARCHAR(50)
 specialization   VARCHAR(100)
 
 ```sql
-
+SELECT 
+    p.*, 
+    d.first_name AS doctor_name
+FROM 
+    patients p
+INNER JOIN 
+    doctors d
+ON 
+    p.doctor_id = d.doctor_id;
 ```
 
 **Output:**
@@ -145,7 +163,17 @@ Sample table: salesman
         5003 | Lauson Hen | San Jose |       0.12
 
 ```sql
-
+SELECT 
+    c.cust_name AS "Customer Name",
+    c.city,
+    s.name AS "Salesman",
+    s.commission
+FROM 
+    customer c
+INNER JOIN 
+    salesman s
+ON 
+    c.salesman_id = s.salesman_id;
 ```
 
 **Output:**
@@ -186,10 +214,24 @@ Sample table: customer
         3003 | Jozy Altidor   | Moscow     |   200 |        5007
 
 ```sql
-
+SELECT 
+    c.cust_name ,
+    c.city,
+    o.ord_no ,
+    o.ord_date ,
+    o.purch_amt AS "Order Amount"
+FROM 
+    customer c
+left JOIN 
+    orders o
+ON 
+    c.customer_id = o.customer_id
+ORDER BY 
+    o.ord_date ASC;
 ```
 
 **Output:**
+<img width="1688" height="942" alt="Screenshot 2025-11-16 133121" src="https://github.com/user-attachments/assets/075f9e48-9896-4305-9ea2-313bf836cb86" />
 
 
 
@@ -198,10 +240,19 @@ Sample table: customer
 Write the SQL query that achieves the selection of all columns from the "nurses" table (aliased as "n") and the "department_name" column from the "departments" table, with an inner join on the "department_id" column.
 
 ```sql
-
+SELECT 
+    s.*, 
+    d.department_name
+FROM 
+    nurses s
+INNER JOIN 
+    departments d
+ON 
+    s.department_id = d.department_id;
 ```
 
 **Output:**
+<img width="1659" height="950" alt="Screenshot 2025-11-16 133136" src="https://github.com/user-attachments/assets/e1468dd0-a67c-465a-b285-ae6468312249" />
 
 
 **Question 6**
@@ -209,10 +260,19 @@ Write the SQL query that achieves the selection of all columns from the "nurses"
 Write the SQL query that achieves the selection of the "name" column from the "salesman" table (aliased as "salesman_name") and the "cust_name" column from the "customer" table (aliased as "customer_name"), with a left join on the "salesman_id" column.
 
 ```sql
-
+SELECT 
+    s.name AS salesman_name,
+    c.cust_name AS customer_name
+FROM 
+    salesman s
+LEFT JOIN 
+    customer c
+ON 
+    s.salesman_id = c.salesman_id;
 ```
 
 **Output:**
+<img width="1616" height="992" alt="Screenshot 2025-11-16 133645" src="https://github.com/user-attachments/assets/561a75f7-492f-463d-ab79-77081791c977" />
 
 
 
@@ -221,10 +281,21 @@ Write the SQL query that achieves the selection of the "name" column from the "s
 Write the SQL query that achieves the selection of the first name from the "patients" table (aliased as "patient_name") and all columns from the "test_results" table (aliased as "t"), with an inner join on the "patient_id" column and a condition filtering for patients admitted between '2024-01-01' and '2024-01-31'.
 
 ```sql
-
+SELECT 
+    p.first_name AS patient_name,
+    t.*
+FROM 
+    patients p
+INNER JOIN 
+    test_results t
+ON 
+    p.patient_id = t.patient_id
+WHERE 
+    p.admission_date BETWEEN '2024-01-01' AND '2024-01-31';
 ```
 
 **Output:**
+<img width="1585" height="938" alt="Screenshot 2025-11-16 133656" src="https://github.com/user-attachments/assets/d8150643-5223-4df0-a6c1-c26102b6aeba" />
 
 
 
@@ -253,10 +324,21 @@ last_name        VARCHAR(50)
 specialization   VARCHAR(100)
 
 ```sql
-
+SELECT 
+    p.*
+FROM 
+    patients p
+INNER JOIN 
+    doctors d
+ON 
+    p.doctor_id = d.doctor_id
+WHERE 
+    d.first_name = 'John' 
+    AND d.last_name = 'Smith';
 ```
 
 **Output:**
+<img width="1630" height="919" alt="Screenshot 2025-11-16 133707" src="https://github.com/user-attachments/assets/11b97a1b-a53d-4026-82e0-a81340bc0c63" />
 
 
 
@@ -265,10 +347,19 @@ specialization   VARCHAR(100)
 Write the SQL query that achieves the selection of the "cust_name" column from the "customer" table (aliased as "c") and the "commission" column from the "salesman" table (aliased as "s"), with a left join on the "salesman_id" column.
 
 ```sql
-
+SELECT 
+    c.cust_name,
+    s.commission
+FROM 
+    customer c
+LEFT JOIN 
+    salesman s
+ON 
+    c.salesman_id = s.salesman_id;
 ```
 
 **Output:**
+<img width="1623" height="882" alt="Screenshot 2025-11-16 133718" src="https://github.com/user-attachments/assets/b48c52af-5ade-497f-8171-5f51de1be2dd" />
 
 
 
@@ -277,10 +368,19 @@ Write the SQL query that achieves the selection of the "cust_name" column from t
 Write the SQL query that achieves the selection of the first name from the "patients" table (aliased as "patient_name") and the test name from the "test_results" table (aliased as "t"), with an inner join on the "patient_id" column.
 
 ```sql
-
+SELECT 
+    p.first_name AS patient_name,
+    t.test_name
+FROM 
+    patients p
+INNER JOIN 
+    test_results t
+ON 
+    p.patient_id = t.patient_id;
 ```
 
 **Output:**
+<img width="1541" height="956" alt="Screenshot 2025-11-16 133733" src="https://github.com/user-attachments/assets/f3d24a5d-2645-4025-8ca2-db1c312a69ed" />
 
 
 
